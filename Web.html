@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Tracker App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Page 1 -->
+  <div id="page1" class="page">
+    <h1>Hi! Welcome to the Lost World</h1>
+    <button onclick="showPage('page2')">Start</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div id="page2" class="page hidden">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username"><br>
+    <input type="password" id="password" placeholder="Password"><br>
+    <button onclick="saveUser()">Login</button>
+  </div>
+
+  <!-- Page 3 -->
+  <div id="page3" class="page hidden">
+    <h2>Track Location</h2>
+    <p>Do you want to track:</p>
+    <button onclick="trackOption('Indoor')">Indoor</button>
+    <button onclick="trackOption('Outdoor')">Outdoor</button>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+      document.getElementById(pageId).classList.remove('hidden');
+    }
+
+    function saveUser() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!username || !password) {
+        alert("Please enter both username and password.");
+        return;
+      }
+
+      // Simulate saving data locally
+      localStorage.setItem("AI_Tracker_User", JSON.stringify({ username, password }));
+      showPage('page3');
+    }
+
+    function trackOption(choice) {
+      alert("You chose: " + choice + " tracking.");
+    }
+  </script>
+
+</body>
+</html>
